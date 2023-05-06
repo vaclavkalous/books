@@ -45,11 +45,13 @@ def main():
 
         df["Book-Title"].replace(lotr_name_conversion, inplace=True)
 
+        # select books that LOTR users rated
         lotr_users = df[df["Book-Title"].isin(LOTR_BOOK_NAMES)][
             "User-ID"
         ].unique()
         lotr_users_books = df[df["User-ID"].isin(lotr_users)]
 
+        # select books that have at least 8 ratings
         relevant_books = (
             lotr_users_books.groupby("Book-Title")
             .agg({"User-ID": "nunique"})
@@ -57,13 +59,11 @@ def main():
             .index
         )
 
-        relevant_ratings = (
-            lotr_users_books[
-                lotr_users_books["Book-Title"].isin(relevant_books)
-            ]
-            .groupby(["User-ID", "Book-Title"], as_index=False)
-            .agg({"Book-Rating": "mean"})
-            .pivot(index="User-ID", columns="Book-Title", values="Book-Rating")
+        # get rating of book per user
+        relevant_ratings = lotr_users_books[
+            lotr_users_books["Book-Title"].isin(relevant_books)
+        ].pivot_table(
+            index="User-ID", columns="Book-Title", values="Book-Rating"
         )
 
         corr = relevant_ratings.corr()
