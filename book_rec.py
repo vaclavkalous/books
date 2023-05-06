@@ -1,9 +1,6 @@
 import logging
 import os
-import pprint
 import sys
-
-import pandas as pd
 
 from common import get_books_df
 
@@ -78,17 +75,17 @@ def main():
             .agg({"Book-Rating": "mean"})
         )
 
-        for l in LOTR_BOOK_NAMES:
+        for book in LOTR_BOOK_NAMES:
             f = (
-                corr[corr.index == l]
+                corr[corr.index == book]
                 .transpose()
                 .merge(avg_rating, on="Book-Title")
-                .rename(columns={f"{l}": f"Corr with {l}"})
-                .nlargest(10, f"Corr with {l}")
+                .rename(columns={f"{book}": f"Corr with {book}"})
+                .nlargest(10, f"Corr with {book}")
                 .to_string()
             )
 
-            print(f"recomended books for {l}: {f}")
+            print(f"recomended books for {book}: {f}")
 
         return 0
 
