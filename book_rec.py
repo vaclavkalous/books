@@ -83,10 +83,10 @@ def main():
                 .merge(avg_rating, on="Book-Title")
                 .rename(columns={f"{book}": f"Corr with {book}"})
                 .nlargest(10, f"Corr with {book}")
-                .to_string()
+                .to_string(index=False)
             )
 
-            print(f"recomended books for {book}: {f}")
+            print(f"Recomended books for {book}: \n {f}")
 
         return 0
 
