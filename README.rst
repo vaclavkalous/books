@@ -1,4 +1,3 @@
-================
 Book recommender
 ================
 
@@ -54,11 +53,13 @@ Contribution guidelines
 =======================
 
 This repository uses isort_ to organize imports, Black_ to ensure consistent
-code style and Flake8_ for linting. 
+code style and Flake8_ for linting. Make sure to run:::
 
    isort .
    black .
    flake8 .
+
+Before commiting any changes.
 
 .. _isort: https://pycqa.github.io/isort/index.html
 .. _Black: https://github.com/psf/black
