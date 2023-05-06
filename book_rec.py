@@ -78,6 +78,7 @@ def main():
         for book in LOTR_BOOK_NAMES:
             f = (
                 corr[corr.index == book]
+                .drop(LOTR_BOOK_NAMES, axis=1)
                 .transpose()
                 .merge(avg_rating, on="Book-Title")
                 .rename(columns={f"{book}": f"Corr with {book}"})
