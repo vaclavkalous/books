@@ -15,6 +15,7 @@ Prerequisities
 Create Python virtual environment and install necessary packages::
 
     python3 -m venv --clear venv
+    source ./venv/bin/activate
     pip3 install -r requirements.txt
     pip3 install black flake8 isort
 
@@ -36,7 +37,7 @@ Alternatively, if you do not need to download the data each time you use them, r
 Suggesting books based on correlation
 ------------------------------------------------------
 
-The ```book_rec.py`` contains improved version of the same script given in the assignment. To run it, type the following command into your terminal:: 
+The ``book_rec.py`` contains improved version of the same script given in the assignment. To run it, type the following command into your terminal:: 
 
     python3 book_rec.py
 
