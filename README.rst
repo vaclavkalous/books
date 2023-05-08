@@ -23,11 +23,13 @@ Downloading and obtaining the data
 ------------------------------------------------------
 
 The script ``common.py`` contains code that downloads the zipfile with the most current version of books data (from http://www2.informatik.uni-freiburg.de/~cziegler/BX/) and returns a pandas dataframe with its contents. This script is used for fetching data in any subsequent programs, to use it run:
+
 ```python
 from common import get_books_df
 df = get_books_df()
 ```
 Alternatively, if you do not need to download the data each time you use them, run:
+
 ```python
 df = get_books_df(download=False)
 ```
