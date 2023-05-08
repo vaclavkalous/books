@@ -97,6 +97,7 @@ def main():
 
     except Exception:
         logger.error("Failed to create book recommendation", exc_info=True)
+        return 1
 
 
 if __name__ == "__main__":
