@@ -72,11 +72,12 @@ def main():
                 lotr_users_books["Book-Title"].isin(relevant_books)
             ]
             .groupby("Book-Title", as_index=False)
-            .agg({"Book-Rating": "mean"})
+            .agg({"Book-Rating": ["mean","count"]})
         )
-
+        avg_rating.columns = ["Book-Title","Average rating", "Number of ratings"]
+        
         for book in LOTR_BOOK_NAMES:
-            f = (
+            rec = (
                 corr[corr.index == book]
                 .drop(LOTR_BOOK_NAMES, axis=1)
                 .transpose()
@@ -86,7 +87,7 @@ def main():
                 .to_string(index=False)
             )
 
-            print(f"Recomended books for {book}: \n {f}")
+            print(f"Recomended books for {book}: \n {rec}")
 
         return 0
 
