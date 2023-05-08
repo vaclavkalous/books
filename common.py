@@ -69,7 +69,7 @@ def get_books_df(
                 sep=";",
                 on_bad_lines="warn",
             )
-            df = pd.merge(users, on="User-ID")
+            df = df.merge(right=users, on="User-ID")
         logger.info("Successfully read CSVs into a dataframe")
 
         return df
