@@ -22,17 +22,16 @@ Create Python virtual environment and install necessary packages::
 Downloading and obtaining the data
 ------------------------------------------------------
 
-The script ``common.py`` contains code that downloads the zipfile with the most current version of books data (from http://www2.informatik.uni-freiburg.de/~cziegler/BX/) and returns a pandas dataframe with its contents. This script is used for fetching data in any subsequent programs, to use it run:
+The script ``common.py`` contains code that downloads the zipfile with the most current version of books data (from http://www2.informatik.uni-freiburg.de/~cziegler/BX/) and returns a pandas dataframe with its contents. This script is used for fetching data in any subsequent programs, to use it run::
 
-```python
-from common import get_books_df
-df = get_books_df()
-```
-Alternatively, if you do not need to download the data each time you use them, run:
+    from common import get_books_df
+    df = get_books_df()
 
-```python
-df = get_books_df(download=False)
-```
+Alternatively, if you do not need to download the data each time you use them, run::
+
+
+    df = get_books_df(download=False)
+
 
 Suggesting books based on correlation
 ------------------------------------------------------
@@ -49,6 +48,14 @@ The improvement of the script consist of:
 - using method chaining when manipultaing with dataframes
 - using pandas builtin methods and avoiding for-loops
 - using all three LOTR books in the computation and unifying the names of the lotr books into three distinct categories
+
+Other ideas for a book recommendation engine
+------------------------------------------------------
+
+The notebook ``recommender_ideas.ipynb`` shows some simple ideas that could be used when building a book recommendation
+system. The file contains both description and very basic code implementation of possible recommendation methods,
+hence it can serve as a building block for an actual recommender that would run in production.
+
 
 Contribution guidelines
 =======================
