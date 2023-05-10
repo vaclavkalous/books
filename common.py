@@ -52,7 +52,7 @@ def get_books_df(
             encoding="cp1251",
             sep=";",
             on_bad_lines="warn",
-            low_memory=False,
+            dtype="str",
         )
         ratings = pd.read_csv(
             "./data/BX-Book-Ratings.csv",
