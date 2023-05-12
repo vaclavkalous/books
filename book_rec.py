@@ -72,13 +72,9 @@ def main():
                 lotr_users_books["Book-Title"].isin(relevant_books)
             ]
             .groupby("Book-Title", as_index=False)
-            .agg({"Book-Rating": ["mean", "count"]})
+            .agg(average_rating=("Book-Rating","mean"),
+                number_of_ratings=("Book-Rating", "count"))
         )
-        avg_rating.columns = [
-            "Book-Title",
-            "Average rating",
-            "Number of ratings",
-        ]
 
         for book in LOTR_BOOK_NAMES:
             rec = (
