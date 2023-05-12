@@ -1,8 +1,7 @@
+import argparse
 import logging
 import os
 import sys
-
-import argparse
 
 from common import get_books_df
 
