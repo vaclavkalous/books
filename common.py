@@ -75,7 +75,7 @@ def get_books_df(
 
     except FileNotFoundError:
         logger.error(
-            "Could not find CSV files in the ./data directory. Try running the function again and set download=True"  # noqa: E501
+            "Could not find CSV files in the ./data directory. Try running the function again and set download=True, or run your script with the --download option",  # noqa: E501
         )
         return
 

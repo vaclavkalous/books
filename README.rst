@@ -40,7 +40,7 @@ The ``book_rec.py`` contains improved version of the same script given in the as
 
     python3 book_rec.py
 
-If you want to use download the data during the recommendation process, run::
+If you want to download the data during the recommendation process, run::
 
     python3 book_rec.py --download
 

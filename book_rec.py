@@ -76,8 +76,10 @@ def main(args):
                 lotr_users_books["Book-Title"].isin(relevant_books)
             ]
             .groupby("Book-Title", as_index=False)
-            .agg(average_rating=("Book-Rating","mean"),
-                number_of_ratings=("Book-Rating", "count"))
+            .agg(
+                average_rating=("Book-Rating", "mean"),
+                number_of_ratings=("Book-Rating", "count"),
+            )
         )
 
         for book in LOTR_BOOK_NAMES:
@@ -91,7 +93,9 @@ def main(args):
                 .to_string(index=False)
             )
 
-            print(f"\n Recomended books for \033[1m The {book.title()} \033[0m : \n\n {rec} \n\n\n")
+            print(
+                f"\n Recomended books for \033[1m The {book.title()} \033[0m : \n\n {rec} \n\n\n"  # noqa: E501
+            )
 
         return 0
 
@@ -101,9 +105,10 @@ def main(args):
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
-    parser.add_argument("--download", action="store_true", help="Enable download")
+    parser.add_argument(
+        "--download", action="store_true", help="Enable download"
+    )
     args = parser.parse_args()
 
     status = main(args)
