@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 import sys
@@ -17,13 +18,15 @@ LOTR_BOOK_NAMES = [
 ]
 
 
-def main():
+def main(args):
     try:
         # load data
-        df = get_books_df()
+        df = get_books_df(download=args.download)
 
         # unify book titles case-wise
         df["Book-Title"] = df["Book-Title"].str.lower()
+
+        df = df[df["Book-Rating"] != 0]
 
         # select LOTR books based on names in trilogy
         lotr_books = df[
@@ -72,13 +75,11 @@ def main():
                 lotr_users_books["Book-Title"].isin(relevant_books)
             ]
             .groupby("Book-Title", as_index=False)
-            .agg({"Book-Rating": ["mean", "count"]})
+            .agg(
+                average_rating=("Book-Rating", "mean"),
+                number_of_ratings=("Book-Rating", "count"),
+            )
         )
-        avg_rating.columns = [
-            "Book-Title",
-            "Average rating",
-            "Number of ratings",
-        ]
 
         for book in LOTR_BOOK_NAMES:
             rec = (
@@ -91,7 +92,9 @@ def main():
                 .to_string(index=False)
             )
 
-            print(f"Recomended books for {book}: \n {rec}")
+            print(
+                f"\n Recomended books for \033[1m The {book.title()} \033[0m : \n\n {rec} \n\n\n"  # noqa: E501
+            )
 
         return 0
 
@@ -101,5 +104,11 @@ def main():
 
 
 if __name__ == "__main__":
-    status = main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--download", action="store_true", help="Enable download"
+    )
+    args = parser.parse_args()
+
+    status = main(args)
     sys.exit(status)
