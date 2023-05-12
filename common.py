@@ -27,19 +27,19 @@ def get_books_df(
     if download:
         try:
             session = requests.Session()
-            req_dataset = session.get(start_url)
-            req_dataset.raise_for_status()
+            res_dataset = session.get(start_url)
+            res_dataset.raise_for_status()
 
-            tree = html.fromstring(req_dataset.content)
+            tree = html.fromstring(res_dataset.content)
             zipfile_href = tree.xpath(
                 "//a[contains(text(),'CSV Dump')]/@href"
             )[0]
             zipfile_url = requests.compat.urljoin(start_url, zipfile_href)
 
-            req_zipfile = session.get(zipfile_url)
-            req_zipfile.raise_for_status()
+            res_zipfile = session.get(zipfile_url)
+            res_zipfile.raise_for_status()
 
-            with ZipFile(BytesIO(req_zipfile.content)) as zipped:
+            with ZipFile(BytesIO(res_zipfile.content)) as zipped:
                 zipped.extractall("./data")
             logger.info("Successfuly decompressed books zipfile")
         except Exception:
