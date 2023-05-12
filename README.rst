@@ -22,15 +22,15 @@ Create Python virtual environment and install necessary packages::
 Downloading and obtaining the data
 ------------------------------------------------------
 
-The script ``common.py`` contains code that downloads the zipfile with the most current version of books data (from http://www2.informatik.uni-freiburg.de/~cziegler/BX/) and returns a pandas dataframe with its contents. This script is used for fetching data in any subsequent programs, to use it run::
+The script ``common.py`` contains code that optionally downloads the zipfile with the most current version of books data (from http://www2.informatik.uni-freiburg.de/~cziegler/BX/) and returns a pandas dataframe with its contents. This script is used for fetching data in any subsequent programs, to use it run::
 
     from common import get_books_df
     df = get_books_df()
 
-Alternatively, if you do not need to download the data each time you use them, run::
+Alternatively, if you want to download the newest version of the data from the URL, run::
 
 
-    df = get_books_df(download=False)
+    df = get_books_df(download=True)
 
 
 Suggesting books based on correlation
@@ -39,6 +39,10 @@ Suggesting books based on correlation
 The ``book_rec.py`` contains improved version of the same script given in the assignment. To run it, type the following command into your terminal:: 
 
     python3 book_rec.py
+
+If you want to use download the data during the recommendation process, run::
+
+    python3 book_rec.py --download
 
 The improvement of the script consist of:
 

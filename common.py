@@ -18,7 +18,7 @@ BOOKS_DATASET_URL = "http://www2.informatik.uni-freiburg.de/~cziegler/BX/"
 
 
 def get_books_df(
-    download: bool = True,
+    download: bool = False,
     start_url: str = BOOKS_DATASET_URL,
     include_users: bool = False,
 ) -> pd.DataFrame:

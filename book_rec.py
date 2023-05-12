@@ -2,6 +2,8 @@ import logging
 import os
 import sys
 
+import argparse
+
 from common import get_books_df
 
 logger = logging.getLogger("book_rec")
@@ -17,10 +19,10 @@ LOTR_BOOK_NAMES = [
 ]
 
 
-def main():
+def main(args):
     try:
         # load data
-        df = get_books_df()
+        df = get_books_df(download=args.download)
 
         # unify book titles case-wise
         df["Book-Title"] = df["Book-Title"].str.lower()
@@ -99,5 +101,10 @@ def main():
 
 
 if __name__ == "__main__":
-    status = main()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--download", action="store_true", help="Enable download")
+    args = parser.parse_args()
+
+    status = main(args)
     sys.exit(status)
