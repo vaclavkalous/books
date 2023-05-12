@@ -26,6 +26,7 @@ def main(args):
         # unify book titles case-wise
         df["Book-Title"] = df["Book-Title"].str.lower()
 
+        # filter out implicit ratins
         df = df[df["Book-Rating"] != 0]
 
         # select LOTR books based on names in trilogy
