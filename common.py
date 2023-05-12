@@ -60,7 +60,6 @@ def get_books_df(
             sep=";",
             on_bad_lines="warn",
         )
-        ratings = ratings[ratings["Book-Rating"] != 0]
         df = books.merge(ratings, on="ISBN")
         if include_users:
             users = pd.read_csv(

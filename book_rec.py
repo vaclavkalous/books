@@ -25,6 +25,8 @@ def main():
         # unify book titles case-wise
         df["Book-Title"] = df["Book-Title"].str.lower()
 
+        df = df[df["Book-Rating"] != 0]
+
         # select LOTR books based on names in trilogy
         lotr_books = df[
             (
