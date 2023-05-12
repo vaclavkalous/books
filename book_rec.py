@@ -87,7 +87,7 @@ def main():
                 .to_string(index=False)
             )
 
-            print(f"Recomended books for {book}: \n {rec}")
+            print(f"\n Recomended books for \033[1m The {book.title()} \033[0m : \n\n {rec} \n\n\n")
 
         return 0
 
