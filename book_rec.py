@@ -70,7 +70,7 @@ def main(args):
             index="User-ID", columns="Book-Title", values="Book-Rating"
         )
 
-        corr = relevant_ratings.corr()
+        corr = relevant_ratings.corr(min_periods=5)
         avg_rating = (
             lotr_users_books[
                 lotr_users_books["Book-Title"].isin(relevant_books)
